@@ -1,0 +1,55 @@
+/* Styles for the Join Waitlist form */
+.signin-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.signin-container {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.signin-container h1 {
+  text-align: center;
+}
+
+.signin-form label {
+  display: block;
+  margin-bottom: 0px; /* Adjust margin to reduce space between label and input */
+}
+
+.signin-form input,
+.signin-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.signin-form input[type="submit"] {
+  width: 100px; /* Adjust width as needed */
+  height: 100px; /* Adjust height as needed */
+  border-radius: 50%;
+  padding: 0; /* Remove padding */
+  background-color: #9ee262; 
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px; /* Adjust font size as needed */
+  font-weight: bold;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Center horizontally */
+}
+
+.signin-form input[type="submit"]:hover {
+  background-color: #45a049; 
+}
