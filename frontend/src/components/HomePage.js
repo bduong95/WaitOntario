@@ -25,7 +25,7 @@ const HomePage = () => {
             <option value="richmondhill">Richmond Hill</option>
             <option value="ajax">Ajax</option>
           </select>
-          <Link to="/join" className="circular-button">Join Waitlist</Link> 
+          <Link to="/join" className="circular-button">Join Waitlist Customized for COMP367</Link> 
         </div>
       </div>
       <Footer />
