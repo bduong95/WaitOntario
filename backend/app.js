@@ -11,6 +11,7 @@ require('dotenv').config();
 const listEndpoints = require('express-list-endpoints')
 
 
+// Unlikely to be used for COMP367 Demo
 const app = express();
 app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.json());
