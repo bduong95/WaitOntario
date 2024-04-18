@@ -20,7 +20,7 @@ stages:
     - script: |
         echo "Current directory: $(System.DefaultWorkingDirectory)"
         cd $(System.DefaultWorkingDirectory)/frontend  # Change to the frontend directory
-        npm install  # Install dependencies (optional)
+        npm install 
         npm run build  # Execute build within frontend directory
       displayName: 'npm install and build'
 
