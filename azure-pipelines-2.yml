@@ -18,8 +18,9 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        npm install
-        npm run build
+        cd frontend  # Change to the frontend directory
+        npm install  # Install dependencies (optional)
+        npm run build  # Execute build within frontend directory
       displayName: 'npm install and build'
 
     - task: SonarQubePrepare@4
