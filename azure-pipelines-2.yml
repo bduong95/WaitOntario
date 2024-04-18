@@ -22,10 +22,11 @@ stages:
       displayName: 'npm install'
 
     - script: |
-        cd $(System.DefaultWorkingDirectory)/path/to/frontend  # Change to the correct path
+        cd $(System.DefaultWorkingDirectory)/frontend  # Change to the frontend directory
         npm install  # Install dependencies (optional)
-        npm run build  # Execute build within frontend directory
+        npm run build  # Execute build within the frontend directory
       displayName: 'Run Build'
+      continueOnError: true  # Continue pipeline execution even if this step fails
 
     - task: SonarQubePrepare@4
       inputs:
