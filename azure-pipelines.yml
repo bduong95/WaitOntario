@@ -33,6 +33,23 @@ stages:
         # Command to generate code coverage report (example)
         # npm run coverage
       displayName: 'Run unit tests and generate code coverage report'
+      
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: '$(Build.SourcesDirectory)'
+        contents: |
+           src/*
+           public/*
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
+      displayName: 'Copy project files'
+    
+    - task: PublishPipelineArtifact@1
+      inputs:
+        artifactName: npmartifact
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        publishLocation: 'pipeline'
+      displayName: 'Publish npm artifact'
+      
 
      
 - stage: SonarQube
