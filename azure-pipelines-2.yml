@@ -19,8 +19,10 @@ stages:
 
     - script: |
         npm install
-        npm run build
-      displayName: 'npm install and build'
+      displayName: 'npm install'
+
+    - script: 'npm run build'  # Use 'npm run build' as the build command
+      displayName: 'Run Build'
 
     - task: SonarQubePrepare@4
       inputs:
