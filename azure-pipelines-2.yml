@@ -18,10 +18,11 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        echo "Current directory: $(System.DefaultWorkingDirectory)"
-        cd $(System.DefaultWorkingDirectory)/frontend  # Change to the frontend directory
-        npm install 
-        npm run build  # Execute build within frontend directory
+         echo "Current directory before cd: $(System.DefaultWorkingDirectory)"
+         cd $(System.DefaultWorkingDirectory)/frontend  # Change to the frontend directory
+         echo "Current directory after cd: $(System.DefaultWorkingDirectory)"
+         npm install 
+         npm run build  # Execute build within frontend directory
       displayName: 'npm install and build'
 
     - task: SonarQubePrepare@4
