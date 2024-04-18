@@ -18,7 +18,7 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        cd frontend  # Change to the frontend directory
+        cd $(System.DefaultWorkingDirectory)/frontend  # Change to the frontend directory
         npm install  # Install dependencies (optional)
         npm run build  # Execute build within frontend directory
       displayName: 'npm install and build'
