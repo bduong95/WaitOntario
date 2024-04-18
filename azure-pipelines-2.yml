@@ -31,7 +31,7 @@ stages:
         configMode: 'manual'
         cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' # Unique key for your project in SonarQube
         cliProjectName: 'WaitOntario' # Name of your project in SonarQube
-        cliSources: '.' # Path to the source code to be analyzed
+        cliSources: 'frontend' # Adjusted to specify frontend directory as source code
 
     - task: SonarQubeAnalyze@4
       displayName: 'Run SonarQube analysis'
