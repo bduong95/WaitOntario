@@ -22,14 +22,25 @@ stages:
         npm run build
       displayName: 'npm install and build'
 
+    - script: |
+        npm test -- --coverage
+      displayName: 'Run Unit Tests and Generate Coverage Report'
+
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish Code Coverage Results'
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+
     - task: SonarQubePrepare@4
       inputs:
-        SonarQube: 'Sonar_Qube' # Name of the SonarQube service connection configured in Azure DevOps
+        SonarQube: 'Sonar_Qube'
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' # Unique key for your project in SonarQube
-        cliProjectName: 'WaitOntario' # Name of your project in SonarQube
-        cliSources: '.' # Path to the source code to be analyzed
+        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902'
+        cliProjectName: 'WaitOntario'
+        cliSources: '.'
+      displayName: 'SonarQube Prepare'
 
     - task: SonarQubeAnalyze@4
       displayName: 'Run SonarQube analysis'
