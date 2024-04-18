@@ -1,0 +1,25 @@
+/* Timer.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 600px; /* Set the height to 100% of the viewport height */
+    max-width: 600px; /* Set the maximum width */
+    margin: 0 auto; /* Center the container horizontally */
+    border: 1px solid #ccc; /* Add a border with 1px width and light grey color */
+    border-radius: 8px; 
+    
+}
+
+.container h1 {
+    font-size: 24px;
+    padding: 25px;
+    margin-bottom: 10px; /* Adjusted margin-bottom */
+}
+
+.container h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: green;
+}
