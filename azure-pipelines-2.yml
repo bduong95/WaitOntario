@@ -22,8 +22,7 @@ stages:
       displayName: 'npm install'
 
     - script: |
-        cd $(System.DefaultWorkingDirectory)  # Change to the repository root
-        cd frontend  # Change directory to frontend
+        cd $(System.DefaultWorkingDirectory)/path/to/frontend  # Change to the correct path
         npm install  # Install dependencies (optional)
         npm run build  # Execute build within frontend directory
       displayName: 'Run Build'
