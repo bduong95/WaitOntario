@@ -19,7 +19,7 @@ stages:
 
     - script: |
          echo "Current directory before cd: $(System.DefaultWorkingDirectory)"
-         cd $(System.DefaultWorkingDirectory)/frontend  # Change to the frontend directory
+         cd C:\agent\_work\1\s\frontend  # Hardcoded path to the frontend directory
          echo "Current directory after cd: $(System.DefaultWorkingDirectory)"
          npm install 
          npm run build  # Execute build within frontend directory
