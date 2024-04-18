@@ -11,26 +11,26 @@ pool:
   demands: npm
 
 stages:
-- stage: SonarQube
-  displayName: SonarQube stage
-  jobs:
-  - job: SonarQubeJob
-    displayName: SonarQube job
-    steps:
-    - task: SonarQubePrepare@4
-      inputs:
-        SonarQube: 'Sonar_Qube' 
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' 
-        cliProjectName: 'WaitOntario' 
-        cliSources: 'C:\agent_work\3\s' 
-    - task: SonarQubeAnalyze@4
-      displayName: 'Run SonarQube analysis'
+#- stage: SonarQube
+#  displayName: SonarQube stage
+ # jobs:
+#  - job: SonarQubeJob
+#    displayName: SonarQube job
+ #   steps:
+#    - task: SonarQubePrepare@4
+ #     inputs:
+ #       SonarQube: 'Sonar_Qube' 
+ #       scannerMode: 'CLI'
+  #      configMode: 'manual'
+#        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' 
+ #       cliProjectName: 'WaitOntario' 
+  #      cliSources: 'C:\agent_work\3\s' 
+ #   - task: SonarQubeAnalyze@4
+#      displayName: 'Run SonarQube analysis'
 
-    - task: SonarQubePublish@4
-      inputs:
-        pollingTimeoutSec: '300'
+#    - task: SonarQubePublish@4
+ #     inputs:
+ #       pollingTimeoutSec: '300'
         
 - stage: Build
   displayName: Build stage
