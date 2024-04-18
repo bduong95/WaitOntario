@@ -34,24 +34,7 @@ stages:
         # npm run coverage
       displayName: 'Run unit tests and generate code coverage report'
 
-- stage: Deliver
-  displayName: Deliver stage
-  jobs:
-  - job: DeliverJob
-    displayName: Deliver job
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js for release'
-
-    - script: |
-        # Use the project's build tool to release the artifact
-        # For example, if you're using npm, you might run `npm publish` here
-        # Replace the command below with the actual command to release your artifact
-        echo "Release artifact using build tool"
-      displayName: 'Release artifact using build tool'
-      
+     
 - stage: SonarQube
   displayName: SonarQube stage
   jobs:
