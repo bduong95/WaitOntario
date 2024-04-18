@@ -18,10 +18,9 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        npm install  # Install dependencies
-        npm run build  # Execute build
-      displayName: 'Run Build'
-      continueOnError: true  # Continue pipeline execution even if this step fails
+        npm install
+        npm run build
+      displayName: 'npm install and build'
 
     - task: SonarQubePrepare@4
       inputs:
@@ -30,8 +29,7 @@ stages:
         configMode: 'manual'
         cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' # Unique key for your project in SonarQube
         cliProjectName: 'WaitOntario' # Name of your project in SonarQube
-        cliSources: '.' # Change to the root directory of the repository
-      displayName: 'SonarQube Prepare'
+        cliSources: '.' # Path to the source code to be analyzed
 
     - task: SonarQubeAnalyze@4
       displayName: 'Run SonarQube analysis'
