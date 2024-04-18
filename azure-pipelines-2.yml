@@ -1,8 +1,3 @@
-# Node.js with React
-# Build a Node.js project that uses React.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - main
 
@@ -10,29 +5,66 @@ pool:
   name: MyAgent367
   demands: npm
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+stages:
+- stage: FrontendBuild
+  displayName: 'Frontend Build Stage'
+  jobs:
+  - job: BuildFrontend
+    displayName: 'Build Frontend'
+    pool:
+      vmImage: 'ubuntu-latest'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+      displayName: 'Install Node.js for Frontend'
 
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'Sonar_Qube' # Name of the SonarQube service connection configured in Azure DevOps
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' # Unique key for your project in SonarQube
-    cliProjectName: 'WaitOntario' # Name of your project in SonarQube
-    cliSources: '.' # Path to the source code to be analyzed
+    - script: |
+        npm install
+        npm run build
+      displayName: 'npm install and build Frontend'
 
-- task: SonarQubeAnalyze@4
-  displayName: 'Run SonarQube analysis'
+- stage: BackendBuild
+  displayName: 'Backend Build Stage'
+  jobs:
+  - job: BuildBackend
+    displayName: 'Build Backend'
+    pool:
+      vmImage: 'ubuntu-latest'
 
-- task: SonarQubePublish@4
-  inputs:
-    pollingTimeoutSec: '300'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+      displayName: 'Install Node.js for Backend'
+
+    - script: |
+        npm install
+        # Add any additional build commands for backend
+      displayName: 'npm install and build Backend'
+
+- stage: SonarQube
+  displayName: 'SonarQube Stage'
+  jobs:
+  - job: SonarQubeAnalysis
+    displayName: 'SonarQube Analysis'
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - task: SonarQubePrepare@4
+      inputs:
+        SonarQube: 'Sonar_Qube'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902'
+        cliProjectName: 'WaitOntario'
+        cliSources: '.'
+
+    - task: SonarQubeAnalyze@4
+      displayName: 'Run SonarQube analysis'
+
+    - task: SonarQubePublish@4
+      inputs:
+        pollingTimeoutSec: '300'
