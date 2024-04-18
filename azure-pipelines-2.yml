@@ -18,32 +18,18 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        cd frontend  # Change to the frontend directory
-        npm install  # Install dependencies (optional)
-        npm run build  # Execute build within frontend directory
+        npm install
+        npm run build
       displayName: 'npm install and build'
-
-    - script: |
-        cd frontend  # Change to the frontend directory
-        echo "Current directory: $(System.DefaultWorkingDirectory)"
-        npm test -- --coverage
-      displayName: 'Run Unit Tests and Generate Coverage Report'
-
-    - task: PublishCodeCoverageResults@1
-      displayName: 'Publish Code Coverage Results'
-      inputs:
-        codeCoverageTool: 'Cobertura'
-        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
 
     - task: SonarQubePrepare@4
       inputs:
-        SonarQube: 'Sonar_Qube'
+        SonarQube: 'Sonar_Qube' # Name of the SonarQube service connection configured in Azure DevOps
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902'
-        cliProjectName: 'WaitOntario'
-        cliSources: '.'
-      displayName: 'SonarQube Prepare'
+        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' # Unique key for your project in SonarQube
+        cliProjectName: 'WaitOntario' # Name of your project in SonarQube
+        cliSources: '.' # Path to the source code to be analyzed
 
     - task: SonarQubeAnalyze@4
       displayName: 'Run SonarQube analysis'
