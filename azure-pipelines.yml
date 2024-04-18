@@ -19,3 +19,6 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- script: echo "machine github.com login bduong95 password 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" > ~/.netrc
+  displayName: 'Configure GitHub PAT authentication'
