@@ -74,15 +74,13 @@ stages:
         pollingTimeoutSec: '300'
 
   - stage: Delivery
-    displayName: 'Delivery Stage'
-    jobs:
-    - job: DeploymentJob
-      displayName: 'Deployment Job'
-      steps:
-      - task: DownloadBuildArtifacts@0
-        inputs:
-          artifactName: 'npmartifact'  # Name of the artifact to download
-          downloadPath: '$(Build.ArtifactStagingDirectory)'  # Path to download the artifact to
-
-  
-        displayName: 'Deploy Artifact'
+  displayName: 'Delivery Stage'
+  jobs:
+  - job: DeploymentJob
+    displayName: 'Deployment Job'
+    steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        artifactName: 'npmartifact'  # Name of the artifact to download
+        downloadPath: '$(Build.ArtifactStagingDirectory)'  # Path to download the artifact to
+      displayName: 'Deploy Artifact'
