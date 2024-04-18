@@ -45,7 +45,7 @@ stages:
     
     - task: PublishPipelineArtifact@1
       inputs:
-        artifactName: npmartifact
+        artifactName: 'npmartifact'
         targetPath: '$(Build.ArtifactStagingDirectory)'
         publishLocation: 'pipeline'
       displayName: 'Publish npm artifact'
@@ -72,3 +72,17 @@ stages:
     - task: SonarQubePublish@4
       inputs:
         pollingTimeoutSec: '300'
+
+  - stage: Delivery
+  displayName: 'Delivery Stage'
+  jobs:
+  - job: DeploymentJob
+    displayName: 'Deployment Job'
+    steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        artifactName: 'npmartifact'  # Name of the artifact to download
+        downloadPath: '$(Build.ArtifactStagingDirectory)'  # Path to download the artifact to
+
+  
+      displayName: 'Deploy Artifact'
