@@ -23,6 +23,7 @@ stages:
       displayName: 'npm install and build'
 
     - script: |
+        echo "Current directory: $(System.DefaultWorkingDirectory)"
         npm test -- --coverage
       displayName: 'Run Unit Tests and Generate Coverage Report'
 
