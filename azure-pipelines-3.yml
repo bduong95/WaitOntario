@@ -10,15 +10,31 @@ pool:
   name: Kumail367
   demands: npm
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: BuildJob
+    displayName: Build job
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+      displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    - script: |
+        npm install
+        npm run build
+      displayName: 'npm install and build'
 
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.x'
+      displayName: 'Install Node.js for tests'
 
+    - script: |
+        npm install
+        npm test
+        # Command to generate code coverage report (example)
+        # npm run coverage
+      displayName: 'Run unit tests and generate code coverage report'
