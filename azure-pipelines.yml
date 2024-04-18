@@ -60,13 +60,12 @@ stages:
     steps:
     - task: SonarQubePrepare@4
       inputs:
-        SonarQube: 'Sonar_Qube' # Name of the SonarQube service connection configured in Azure DevOps
+        SonarQube: 'Sonar_Qube' 
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' # Unique key for your project in SonarQube
-        cliProjectName: 'WaitOntario' # Name of your project in SonarQube
-        cliSources: 'frontend' # Adjusted to specify frontend directory as source code
-
+        cliProjectKey: 'sqa_1647b74c02bf1c074d7c498b0e5f0c303ca72902' 
+        cliProjectName: 'WaitOntario' 
+        cliSources: 'frontend' 
     - task: SonarQubeAnalyze@4
       displayName: 'Run SonarQube analysis'
 
