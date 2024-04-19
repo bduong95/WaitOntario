@@ -87,7 +87,6 @@ stages:
       
 - stage: Deploy_Dev
   displayName: 'Deploy to Dev Env'
-  dependsOn: Build
   jobs:
   - deployment: Deployment_Dev
     displayName: 'Deployment to Dev Env'
@@ -101,7 +100,6 @@ stages:
 
 - stage: Deploy_QAT
   displayName: 'Deploy to QAT Env'
-  dependsOn: Build
   jobs:
   - deployment: Deployment_QAT
     displayName: 'Deployment to QAT Env'
@@ -115,7 +113,6 @@ stages:
 
 - stage: Deploy_Staging
   displayName: 'Deploy to Staging Env'
-  dependsOn: Build
   jobs:
   - deployment: Deployment_Staging
     displayName: 'Deployment to Staging Env'
@@ -129,7 +126,6 @@ stages:
 
 - stage: Deploy_Prod
   displayName: 'Deploy to Production Env'
-  dependsOn: Build
   jobs:
   - deployment: Deployment_Prod
     displayName: 'Deployment to Production Env'
