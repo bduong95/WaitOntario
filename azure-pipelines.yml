@@ -84,3 +84,59 @@ stages:
 
 
       displayName: 'Deploy Artifact'
+      
+- stage: Deploy_Dev
+  displayName: 'Deploy to Dev Env'
+  dependsOn: Build
+  jobs:
+  - deployment: Deployment_Dev
+    displayName: 'Deployment to Dev Env'
+    environment: 'Dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to Dev environment"
+            displayName: 'Deploy to Dev Environment'
+
+- stage: Deploy_QAT
+  displayName: 'Deploy to QAT Env'
+  dependsOn: Build
+  jobs:
+  - deployment: Deployment_QAT
+    displayName: 'Deployment to QAT Env'
+    environment: 'QAT'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to QAT environment"
+            displayName: 'Deploy to QAT Environment'
+
+- stage: Deploy_Staging
+  displayName: 'Deploy to Staging Env'
+  dependsOn: Build
+  jobs:
+  - deployment: Deployment_Staging
+    displayName: 'Deployment to Staging Env'
+    environment: 'Staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to Staging environment"
+            displayName: 'Deploy to Staging Environment'
+
+- stage: Deploy_Prod
+  displayName: 'Deploy to Production Env'
+  dependsOn: Build
+  jobs:
+  - deployment: Deployment_Prod
+    displayName: 'Deployment to Production Env'
+    environment: 'Production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "Deploying to Production environment"
+            displayName: 'Deploy to Production Environment'
